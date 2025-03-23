@@ -87,7 +87,8 @@ bool AP_MSP_Telem_Backend::init_uart()
 {
     if (_msp_port.uart != nullptr)  {
         // re-init port here for use in this thread
-        _msp_port.uart->begin(0);
+        const auto baudrate = _msp_port.uart->get_baud_rate();
+        _msp_port.uart->begin(baudrate);
         return true;
     }
     return false;
